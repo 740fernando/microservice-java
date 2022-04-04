@@ -1,4 +1,60 @@
-# Microsserviços
+# Microsserviços Java com Spring Boot e Spring Cloud
+
+## Visão geral do sistema
+
+![image](https://user-images.githubusercontent.com/32016610/161559228-5ab38e0c-6b25-4e54-b227-cc2b8fa7afa3.png)
+
+### Modelo conceitual
+
+![image](https://user-images.githubusercontent.com/32016610/161559358-48faad88-dcb8-4297-9f27-fffa4c7a6601.png)
+
+### Autenticação e Autorização
+
+![image](https://user-images.githubusercontent.com/32016610/161559420-e3c6fedc-6064-4653-99a7-a811c5ddd2f4.png)
+
+![image](https://user-images.githubusercontent.com/32016610/161559469-5dbcb554-89cb-4894-bd0e-bf0555fdcba3.png)
+
+![image](https://user-images.githubusercontent.com/32016610/161559535-3b025bbf-44e0-4c66-ab97-ca6fdf719d6c.png)
+
+
+## Visão geral sobre microsserviços
+
+### Leitura recomendada 
+- Microservices – a definition of this new architectural term
+- https://martinfowler.com/articles/microservices.html 
+- http://www.pedromendes.com.br/2016/01/02/microservicos
+
+## Sistema monolítico
+
+- Falta de coesão (várias responsabilidades em um único sistema) • Manutenções podem implicar em parar todo o sistema
+- Dificuldade de escalar • Dificuldade de escalar somente a parte que precisa
+- Alternativa (15+ anos) • SOA / ESB
+
+### Motivações recentes para mudança para microserviços
+- Amadurecimento de “cloud”
+- Princípio “efêmero”
+- Configuração automática
+- Escala automática
+## Microsserviços
+- Orientado a produto
+- Coeso (responsabilidades reduzidas / especializado) 
+- Desacoplado
+- Independentes
+- Banco de dados próprio
+- Tecnologias/linguagens próprias
+- Governança própria
+- Infraestrutura automatizada
+- Desenhado para falhar • Design evolutivo
+
+## Pré-requisitos
+
+- Conhecimento básico de Spring Boot • Instalações
+- JDK 11 (JAVA_HOME, PATH) • youtube.com/devsuperior/playlists
+- STS - Spring Tool Suite
+- Docker / Docker Desktop
+- Operar e configurar seu computador • Web / Youtube / Stackoverflow
+
+# Microsserviços por Martin Fowler
 
  O texto abaixo é a uma tradução do artigo escrito por Martin Fowler e James Lewis. Para acessar a versão original em inglês, <a href= "https://martinfowler.com/articles/microservices.html"> clique aqui </a > . Caso tenha sugestões para tornar a tradução melhor, compartilhe através da seção de "Issues"
  
