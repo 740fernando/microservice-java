@@ -41,7 +41,7 @@ Usar serviços desta forma tem alguns efeitos colaterais. Chamadas remotas são 
 
 Em um primeiro momento, nós podemos ver quais serviços apontam para processos em execução, mas isso é só uma primeira impressão. Um serviço pode consistir em diversos processos que serão sempre desenvolvidos e publicados juntos, como uma única aplicação e um banco de dados que é usado por cada serviço.
 
-<h4>Organizado através das áreas do negócio</h4>
+## Organizado através das áreas do negócio
 
 Quando procuramos dividir uma grande aplicação em partes, o foco geralmente é na camada de tecnologia, levando os times a serem divididos entre aqueles que cuidam da interface, da lógica server-side e do banco de dados. Quando times são divididos desta forma, até mesmo mudanças simples podem exigir bastante tempo e aprovação financeira em projetos que envolvam diversos times. Ao fugir destes problemas, o time pode acabar trazendo a lógica para as aplicações que eles têm acesso. Em outras palavras, lógica em todos os lugares. Este é um exemplo da Lei de Conway  <a href="#note_5">[5]</a> em ação.
 
@@ -63,13 +63,13 @@ Uma empresa organizada desta forma é a www.comparethemarket.com. Times multifun
 
 Grandes aplicações monolíticas podem sempre ser modularizadas ao redor das áreas do negócio também, embora nem sempre este seja o caso mais comum. Certamente devemos incentivar um time grande construindo uma aplicação monolítica a se dividir.
 
-<h4>Qual é o tamanho de um microsserviço ?</h4>
+## Qual é o tamanho de um microsserviço ? 
 
 Embora o termo “microsserviço” tenha se tornado um nome popular para este estilo de arquitetura, seu nome remete a um significado infeliz focando no tamanho do serviços e isso se dá por conta da palavra “micro”. Nas nossas conversas com aqueles que já usam os microsserviços, temos visto diversos tamanhos de serviços. Os maiores que notamos seguem a noção da Amazon de “Two Pizza Team” (ou seja, o time inteiro consegue ser alimentados por duas pizzas), significando que não pode se ter mais do que uma dúzia de pessoas. Em uma escala menor, vimos cenários onde um time de meia dúzia de pessoas conseguia cuidar de meia dúzia de serviços.
 
 Isto leva a questionar se esta diferença entre “serviços a cada dúzia de pessoas” e “serviços por pessoa” deveria estar debaixo da categoria de microsserviços. Até então pensamos que é melhor agrupá-los, mas é possível que mudemos nossa mente conforme explorarmos este estilo no futuro.
 
-<h4>Produtos e não projetos</h4>
+## Produtos e não projetos
 
 Vemos que a maior parte dos esforços para o desenvolvimento de uma aplicação usa um modelo de projeto: onde o dever é entregar algum software que é por si só considerado o fim. Após isso o software é entregue para quem cuidará da manutenção e o time que construiu o software é desfeito.
 
@@ -79,7 +79,7 @@ A mentalidade de produto unida com as áreas do negócio. Ao invés de enxergar 
 
 Não existe um motivo para que esta mesma abordagem não seja adotada em aplicações monolíticas, mas uma granularidade menor dos serviços pode facilitar a relação entre os desenvolvedores de serviços e seus usuários.
 
-<h4><em>Endpoints</em> inteligentes e fluxo de comunicação simples</h4>
+<h2><em>Endpoints</em> inteligentes e fluxo de comunicação simples</h3>
 
 Ao construir estruturas para comunicação entre diferentes processos, vimos muitos produtos e abordagens que dificultam a tarefa criando grandes inteligências no mecanismo de comunicação por si só. Um bom exemplo disso é o Enterprise Service Bus (ESB), onde produtos ESB freqüentemente incluem formas sofisticadas de roteamento de mensagens, transformação e aplicação das regras de negócio.
 
@@ -97,7 +97,7 @@ A segunda abordagem geralmente usada é a comunicação através de um barrament
 
 Na estrutura monolítica os componentes são executados no mesmo processo e a comunicação entre eles é feita via invocação de métodos ou chamadas de função. O maior problema em mudar de uma estrutura monolítica para de microsserviços esta em mudar o padrão de comunicação. A mudança de uma comunicação nativa que usa chamadas de métodos para chamadas remotas pode precisar de muitas iterações – o que não performa bem. Na prática, você precisa substituir uma comunicação que gera muitas iterações para uma abordagem menos granular.
 
-<h4>Governança descentralizada</h4>
+## Governança descentralizada
 
 Uma das conseqüências de governanças centralizadas é a tendência de padronizar tudo em uma única plataforma tecnológica. A experiência mostra que esta abordagem é limitada – nem todo problema é um prego, nem toda solução é um martelo. Nós preferimos usar a ferramenta certa para o trabalho e, embora aplicações monolíticas também possam usar diferentes linguagens, isso não é comum.
 
@@ -114,7 +114,7 @@ Para a comunidade que usa microsserviços, serviços que possuem muitas responsa
 Talvez o apogeu desta governança descentralizada é a cultura construa / ponha em execução popularizada pela Amazon. Times são responsáveis por todos os aspectos do software que eles constroem, incluindo a operação na escala 24/7. Este tipo de responsabilidade definitivamente não é uma norma, mas temos visto mais e mais companhias forçando esta tarefa para as equipes de desenvolvimento. Netflix é outra organização que tem adotado esta cultura <a href="#note_11">[11]</a>. Estar acordado toda noite até as 3 horas da madrugada dando suporte a produção é certamente uma forma poderosa de incentivar o foco na qualidade ao escrever o seu código. Estas idéias estão o mais longe possível da forma tradicional de governança centralizada.
 
 
-<h4>Microsserviços e SOA</h4>
+## Microsserviços e SOA
 
 Quando falamos de microsserviços uma questão comum é se isso é simplesmente um tipo de Arquitetura Orientada a Serviços (SOA) que nós vimos uma década atrás. Existe mérito nessa dúvida, porque microsserviços é um estilo muito similar ao que os defensores do SOA pregam. O problema é que SOA significa muitas coisas diferentes, e na maior parte do tempo que vamos atrás de algo chamado “SOA”, encontramos diferenças significantes ao estilo que temos descrito aqui, devido ao foco nas ESBs(Enterprise Service Bus) usados para integrar aplicações monolíticas.
 
@@ -124,13 +124,13 @@ Certamente muitas das técnicas em uso pelos praticantes de microsserviços cres
 
 Estas práticas comuns do SOA tem levado a alguns defensores de microsserviços a rejeitarem a denominação de SOA completamente, embora outros considerem microsserviços como uma forma de SOA <a href="#note_8">[8]</a> – talvez a orientação a serviços feita da forma certa. De qualquer forma, o fato de que SOA signifique diversas coisas diferentes nos faz pensar que é bom ter um termo que defina melhor esta forma arquitetural que estamos descrevendo.
 
-<h4>Muitas linguagens, muitas opções</h4>
+## Muitas linguagens, muitas opções
 
 O crescimento da JVM como uma plataforma é justamente o exemplo mais recentemente da mistura entre linguagens dentro de uma plataforma comum. Por décadas, tem sido uma prática comum migrar para uma linguagem de mais alto nível para obter vantagens de abstrações de mais alto níveis. Por sua vez, delega-se as linguagens de baixo nível a escrita de códigos mais sensíveis a performance. Entretanto, muitos softwares monolíticos não precisam deste nível de otimização de performance ou sequer DSLs e altos níveis de abstração combinadas. Pelo contrário, softwares monolíticos geralmente usam uma única linguagem e tendem a limitar o número de tecnologias em uso <a href="#note_10">[10]</a>.
 
 
 
-<h4>Administração descentralizada de dados</h4>
+## Administração descentralizada de dados
 
 A descentralização da administração de dados pode ser feita de diferentes formas. De forma mais abstrata, isto significa que o modelo conceitual de domínio pode ser diferente entre os sistemas. Este cenário é um problema comum ao fazer integração em uma empresa grande, onde a visão que o setor de vendas tem de um cliente pode ser diferente do ponto de vista do suporte. Algumas coisas que são chamadas de cliente na visão de vendas, podem nem sequer parecer na visualização do suporte. Objetos podem ter diferentes atributos e (pior) atributos em comum, com diferentes significados.
 
@@ -146,7 +146,7 @@ O uso de transações como estas ajuda com a consistência, mas impõem um acopl
 
 A forma de gerenciar estas inconsistências é um novo desafio para muitos times de desenvolvimento. Geralmente as empresas lidam com um certo grau de inconsistência com o objetivo de responder rapidamente a sua demanda, possuindo algum processo para lidar com erros. Esta troca é vantajosa enquanto o custo de corrigir os erros for menor que o custo da perda gerada por ter uma consistência maior.
 
-<h4>Padrões amplamente testados e padrões impostos</h4>
+## Padrões amplamente testados e padrões impostos
 
 Os times que usam microsserviços tendem a desestimular o uso dos padrões simplesmente impostos pelos grupos de arquiteturas enterprise, e tendem a usar alegremente (e até evangelizar) o uso de padrões abertos tais como HTTP, ATOM e outros micro formatos.
 
@@ -154,7 +154,7 @@ A diferença chave é como os padrões são criados e como eles são propostos. 
 
 Estes padrões formam um mundo a parte de muitos no ambiente corporativo, que são freqüentemente desenvolvidos por grupos que tem pouca experiência em programação, ou são fortemente influenciados por vendedores.
 
-<h4>Automação da Infraestrutura</h4>
+## Automação da Infraestrutura
 
 Técnicas para automação da infra-estrutura tiveram grande evolução nos últimos anos – como a computação na nuvem e a própria AWS em particular, que permite reduzir a complexidade de construir, publicar e operar microsserviços.
 
@@ -171,10 +171,10 @@ Outra área onde nós vemos times usando uma extensa automação da infra-estrut
 <p style="text-align: center;"><img loading="lazy" class="aligncenter wp-image-709 size-full" src="https://codigo35.com/wp-content/uploads/2016/01/blog_f5_2.png" alt="blog_f5_2" width="796" height="363" srcset="https://codigo35.com/wp-content/uploads/2016/01/blog_f5_2.png 796w, https://codigo35.com/wp-content/uploads/2016/01/blog_f5_2-300x137.png 300w, https://codigo35.com/wp-content/uploads/2016/01/blog_f5_2-768x350.png 768w" sizes="(max-width: 796px) 100vw, 796px"></p>
 <p style="text-align: center;">Figura 6: A forma de publicação freqüentemente é diferente.</p>
 
-<h4>Facilite fazer a coisa correta</h4>
+## Facilite fazer a coisa correta
 Um efeito colateral que encontramos no aumento de automação (como uma conseqüência da entrega e publicação contínua) é a criação de ferramentas úteis que ajudem os desenvolvedores e o pessoal da operação. Ferramentas para a criação de artefatos, administração de bases de código, levantamento de serviços ou de monitoramento de logs são muito comuns agora. O melhor exemplo na internet é provavelmente o conjunto de ferramentas open source da Netflix, mas existem outras incluindo o Dropwizard, que temos usado extensamente.
 
-<h4>Projetado para a falha</h4>
+## Projetado para a falha
 Uma conseqüência do uso de serviços como componentes é que as aplicações precisam ser desenhadas de maneira que possam tolerar a falha dos serviços. Qualquer chamada de serviço poderá falhar devido a uma indisponibilidade do mesmo, e o cliente precisa responder a isso da maneira mais tranqüila possível. Isto é uma desvantagem em comparação ao design monolítico porque introduz uma complexidade adicional ao ter que administrar esta situação. Como conseqüência, os times que usam microsserviços constantemente tem que refletir sobre como as falhas dos serviços podem afetar a experiência do usuário. O Simian Army da Netflix leva os serviços e até mesmos os datacenters a falha durante o dia para testar tanto a resiliência da aplicação quanto o monitoramento.
 
 Esta forma de testar de maneira automática o ambiente em produção pode ser o suficiente para dar ao pessoal de suporte o tipo de arrepios que precedem a uma semana intensa de trabalho. Não queremos dizer que os padrões de arquiteturas monolíticas não são capazes de ter configurações sofisticadas de monitoramento – somente afirmamos que isto é menos comum em nossa experiência.
@@ -188,16 +188,16 @@ Aplicações monolíticas podem ser construídas para serem transparentes como u
 Times que praticam microsserviços esperam ver monitoramentos sofisticados e configurações individuais de log para cada serviço, em dashboards exibindo status de execução (up/down) e uma variedade de métricas relevantes para a operação do negócio. Detalhes sobre o status dos disjuntores (circuit breakers), taxa de transferência atual e latência são outros exemplos que freqüentemente encontramos no mundo real.
 
 
-<h4>O Circuit Breaker e o código pronto para a produção.</h4>
+## O Circuit Breaker e o código pronto para a produção.
 
 O padrão Circuit Breaker (disjuntor) aparece no Release It! junto com outros padrões como o Bulkhead e o Timeout. Implementados juntos, estes padrões são cruciais quando construímos aplicações que se comunicam. Este <a href="http://techblog.netflix.com/2012/02/fault-tolerance-in-high-volume.html" target="_blank" rel="noopener">post no blog da Netflix</a>.
 
-<h4>Considerando chamadas síncronas prejudiciais.</h4>
+## Considerando chamadas síncronas prejudiciais.
 
 Sempre que você tem um certo número de chamadas síncronas entre serviços você vai encontrar um efeito multiplicador na lentidão. Esta lentidão no seu sistema é simplesmente o produto da lentidão de componentes individuais. Você deve tomar uma decisão: transformar suas chamadas em assíncronas ou gerenciar esta lentidão. No www.guardian.co.uk eles implementaram uma regra simples em sua nova plataforma – uma chamada síncrona por requisição do usuário, enquanto na Netflix, seu redesign na API transformou toda a criação de APIs em recursos assíncronos.
 
 
-<h4>Design que evolui</h4>
+## Design que evolui
 
 Times que trabalham com microsserviços geralmente possuem uma experiência em desenhar aplicações para evoluírem e enxergam na decomposição dos serviços uma ferramenta avançada que permite controlar mudanças em suas aplicações sem necessidade de evitá-las. Controlar mudanças não significa necessariamente reduzi-las – com atitudes e ferramentas corretas você pode fazer freqüentes, rápidas e precisas mudanças em seu software.
 
@@ -210,7 +210,7 @@ Esta ênfase de que os serviços possam ser substituíveis é, em um caso especi
 Colocar componentes em serviços permite um planejamento de lançamento mais granular. Em um sistema monolítico, qualquer mudança requer uma publicação da aplicação por inteiro. Com microsserviços, entretanto, você precisa somente republicar o serviço que foi modificado. Isto simplifica e agiliza o processo de publicação. Em contrapartida, você tem que se preocupar com as mudanças que possam quebrar os serviços que as consomem. A abordagem tradicional de integração é tentar lidar com esse problema usando versionamento, mas a preferência no mundo dos microsserviços é usar o versionamento como último recurso. Podemos evitar diversos versionamentos ao desenhar serviços para serem tolerantes a mudanças em seus fornecedores o máximo possível.
 
 
-<h4>Microsserviços são o futuro?</h4>
+## Microsserviços são o futuro?
 Nosso principal objetivo neste artigo é explicar as maiores idéias e princípios por trás dos microsserviços. Ao gastar tempo fazendo isto, nós pensamos claramente que o estilo arquitetural dos microsserviços é algo importante – digno de sérias considerações voltadas para aplicações empresariais. Recentemente construímos diversos sistemas usando este estilo e sabemos de outros que usaram e aprovaram esta abordagem.
 
 Entre aqueles que, até onde temos conhecimento, são de certa forma pioneiros neste estilo arquitetural estão a Amazon, Netflix, The Guardian, o Serviço Digital Governamental do Reino Unido, realstate.com.au e o comparethemarket.com. O circuito de conferências em 2013 foi cheio de exemplos de companhias que caminharam para algo que pode ser classificado como microsserviços – incluindo o Travis CI. Além disso existem diversas organizações que há bastante tempo tem usado algo que chamamos de microsserviços, mas que sequer utilizam este nome (frequentemente isso é chamado de SOA, embora, como falamos, SOA aparece em diversas formas contraditórias. <a href="#note_15">[15]</a>)
@@ -233,7 +233,7 @@ Nosso colega Sam Newman gastou a maior parte de 2014 trabalhando em um livro que
 
 
 
-<h3>Notas:</h3>
+### Notas:
 
 
 <p>
