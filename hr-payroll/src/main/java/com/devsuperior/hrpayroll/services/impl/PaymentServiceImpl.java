@@ -16,7 +16,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public Payment getPayment(long workerId, int days) {
-			var worker = workerFeignClient.findById(workerId).getBody();
+			var worker = workerFeignClient.findById(workerId).getBody(); // Balanceamento de carga com Ribbon - Quando for executada esta linha, o Logger irá imprimir o numero da porta
 			return new Payment(worker.getName(),worker.getDailyIncome(),days);
 	}
 }
