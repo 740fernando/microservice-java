@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.devsuperior.hrpayroll.model.dto.WorkerResponseDTO;
 
 @Component
-@FeignClient(name = "hr-worker", url= "localhost:8001", path= "/workers" )
+@FeignClient(name = "hr-worker", path= "/workers" ) // Balanceamento de carga com Ribbon - Foi retirado url= "localhost:8001", porque agora havera mais de uma instancia do Worker
 public interface WorkerFeignClient {
 	
 	@GetMapping(value = "/{id}")
