@@ -32,11 +32,10 @@
 
 ## Pré-requisitos
 
-- Conhecimento básico de Spring Boot • Instalações
-- JDK 11 (JAVA_HOME, PATH) • youtube.com/devsuperior/playlists
-- STS - Spring Tool Suite
+- Conhecimento básico de Spring Boot
+- JDK 11 (JAVA_HOME, PATH) 
 - Docker / Docker Desktop
-- Operar e configurar seu computador • Web / Youtube / Stackoverflow
+- Operar e configurar seu computador
 
 # Fase 1: Comunicação simples, Feign, Ribbon
 
