@@ -52,6 +52,16 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		<!-- No desenvolvimento de microservicos,eh possivel ocorrer algumas falhas:
+		- timeout(tempo de espera grande)
+		- um microservico esta fora do ar, pode ocorrer um erro em cascata
+		hytrix eh uma dependencia para tolerancia a falha  -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>
+				spring-cloud-starter-netflix-hystrix
+			</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
