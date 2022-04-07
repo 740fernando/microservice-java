@@ -43,6 +43,12 @@ public class WorkerController {
 	}
 	@GetMapping("/{id}")
 	public ResponseEntity<WorkerResponseDTO> findById(@PathVariable Long id){
+		/* Teste de TIMOUT
+		try {
+			Thread.sleep(3000L);
+		}catch(InterruptedException e) {
+			e.printStackTrace();
+		}*/
 		logger.info(PORT.concat(env.getProperty("local.server.port")));
 		return ResponseEntity.ok(mapper.toWorkerResponseDTO(service.findById(id)));
 	}
