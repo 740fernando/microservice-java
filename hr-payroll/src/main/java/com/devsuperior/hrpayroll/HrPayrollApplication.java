@@ -2,16 +2,19 @@ package com.devsuperior.hrpayroll;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * O eureka já tem o balanceamento de carga integrado, então é desnecessário o Ribbon.
  * Se for criado mais de uma instancia do worker, vai ser feito automaticamente com balanceamento de carga
- * @author fsouviei
+ *
+ * @EnableCircuitBreaker - anotation do hystrix - tolerancia a falha
  *
  */
 
+@EnableCircuitBreaker
 @EnableEurekaClient
 @EnableFeignClients
 @SpringBootApplication
