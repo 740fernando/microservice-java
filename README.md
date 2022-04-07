@@ -258,7 +258,7 @@ fetch("http://localhost:8765/hr-worker/workers", {
 
 
 
-## Visão geral do sistema
+# Visão geral do sistema
 
 ![image](https://user-images.githubusercontent.com/32016610/161559228-5ab38e0c-6b25-4e54-b227-cc2b8fa7afa3.png)
 
