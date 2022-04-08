@@ -1,5 +1,10 @@
 package com.devsuperior.hruser.service;
 
-public class UserService {
+import com.devsuperior.hruser.model.User;
 
+public interface UserService {
+
+	User findByEmail(String email);
+
+	User findById(Long id);
 }
