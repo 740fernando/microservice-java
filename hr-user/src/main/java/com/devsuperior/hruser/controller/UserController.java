@@ -1,7 +1,5 @@
 package com.devsuperior.hruser.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +15,6 @@ import com.devsuperior.hruser.service.UserService;
 @RequestMapping(value="/users")
 public class UserController {
 	
-	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	UserService service;
