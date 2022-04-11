@@ -1,8 +1,9 @@
 package com.devsuperior.hrouath.config;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
@@ -11,13 +12,12 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  * 
  * @author fsouviei
  */
+@RefreshScope
 @Configuration
 public class AppConfig {
-
-	@Bean
-	public BCryptPasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
+	@Value("${jwt.secret}")
+	private String jwtSecret;
 
 	/**
 	 * Auxiliar que traduz entre valores de token codificados JWT e informações de
@@ -28,7 +28,7 @@ public class AppConfig {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-		tokenConverter.setSigningKey("MY-SECRET-KEY");
+		tokenConverter.setSigningKey(jwtSecret);
 		return tokenConverter;
 	}
 
