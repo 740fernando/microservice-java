@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.jwk.JwkTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
  * Configuracoes gerais da app hr-oauth
@@ -36,7 +36,7 @@ public class AppConfig {
 	 * Responsavel por ler as informacoes do token
 	 */
 	@Bean
-	public JwkTokenStore tokenStore() {
-		return new JwkTokenStore(accessTokenConverter());
+	public JwtTokenStore tokenStore() {
+		return new JwtTokenStore(accessTokenConverter());
 	}
 }

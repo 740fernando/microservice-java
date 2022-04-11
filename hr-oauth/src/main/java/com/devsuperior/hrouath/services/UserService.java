@@ -1,7 +1,14 @@
 package com.devsuperior.hrouath.services;
 
-import com.devsuperior.hrouath.model.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public interface UserService {
-	 User findByEmail(String email);
+public interface UserService extends UserDetailsService {
+
+	@Override
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+	
+	
+
 }
