@@ -12,7 +12,7 @@
 	<artifactId>hr-oauth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hr-oauth</name>
-	<description>Authorization microservice</description>
+	<description>Authorization Server</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR12</spring-cloud.version>
