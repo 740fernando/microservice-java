@@ -1,13 +1,22 @@
 package com.devsuperior.hrapigatewayzuul.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 /**
  * Classe de Configuracao responsavel por determinar o gateway zuul como
@@ -23,6 +32,24 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+
+	private static final String PATH = "/**";
+
+	private static final String CONTENT_TYPE = "Content-type";
+
+	private static final String AUTHORIZATION = "Authorization";
+
+	private static final String PATCH = "PATCH";
+
+	private static final String DELETE = "DELETE";
+
+	private static final String PUT = "PUT";
+
+	private static final String GET = "GET";
+
+	private static final String POST = "POST";
+
+	private static final String ALL = "*";
 
 	private static final String ADMIN = "ADMIN";
 
@@ -57,5 +84,27 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.antMatchers(HttpMethod.GET, PATH_OPERATOR).hasAnyRole(OPERATOR, ADMIN)
 		.antMatchers(PATH_ADMIN).hasRole(ADMIN)
 		.anyRequest().authenticated();
+		
+		http.cors().configurationSource(corsConfigurationSource());
+	}
+	
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+		var corsConfig = new CorsConfiguration();
+		corsConfig.setAllowedOrigins(Arrays.asList(ALL));
+		corsConfig.setAllowedMethods(Arrays.asList(POST,GET,PUT,DELETE,PATCH));
+		corsConfig.setAllowCredentials(true);
+		corsConfig.setAllowedHeaders(Arrays.asList(AUTHORIZATION,CONTENT_TYPE));
+		
+		var source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration(PATH, corsConfig);
+		return source;
+	}
+	
+	@Bean
+	public FilterRegistrationBean<CorsFilter> corsFilter(){
+		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource()));
+		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);// essa linha representa que o filter vai ser executado em alta precedência
+		return bean;
 	}
 }
