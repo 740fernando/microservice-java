@@ -38,6 +38,12 @@ public class WorkerController {
 	@Autowired
 	private WorkerMapper mapper;
 	
+	@GetMapping(value = "/configs")
+	public ResponseEntity<Void> getConfigs() {
+		//logger.info("CONFIG = " + testConfig);
+		return ResponseEntity.noContent().build();
+	}
+	
 	@GetMapping
 	public ResponseEntity<List<WorkerResponseDTO>>searchAll(){
 		return ResponseEntity.ok(mapper.toWorkerListResponseDTO(service.findAll()));
