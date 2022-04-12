@@ -1,5 +1,8 @@
 package com.devsuperior.hrworker.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
@@ -13,5 +16,9 @@ public class WorkerMapper {
 		var ouputDTO= new WorkerResponseDTO();
 		BeanUtils.copyProperties(request, ouputDTO);
 		return ouputDTO;
+	}
+
+	public List<WorkerResponseDTO> toWorkerListResponseDTO(List<Worker> request) {
+		return request.stream().map(rqt->toWorkerResponseDTO(rqt)).collect(Collectors.toList());
 	}
 }

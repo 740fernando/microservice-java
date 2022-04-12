@@ -19,7 +19,7 @@ public class WorkerServiceImpl implements WorkerService {
 	
 	@Override
 	public List<Worker> findAll() {
-		return repository.findAll() ;
+		return repository.findAll();
 	}
 
 	@Override

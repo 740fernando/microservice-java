@@ -326,13 +326,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api-gateway}}/workers/3",
+									"raw": "{{api-gateway}}/hr-worker/workers/2",
 									"host": [
 										"{{api-gateway}}"
 									],
 									"path": [
+										"hr-worker",
 										"workers",
-										"3"
+										"2"
 									]
 								}
 							},
@@ -521,14 +522,14 @@
 									"raw": "{\r\n    \"email\":\"nina@gmail.com\"\r\n}"
 								},
 								"url": {
-									"raw": "{{api-gateway}}/hr-user/users/12",
+									"raw": "{{api-gateway}}/hr-user/users/1",
 									"host": [
 										"{{api-gateway}}"
 									],
 									"path": [
 										"hr-user",
 										"users",
-										"12"
+										"1"
 									]
 								}
 							},
@@ -616,9 +617,9 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"if(responseCode.code >= 200 && responseCode.code< 300){\r",
-											"    var json= JSON.parse(responseCode);\r",
-											"    postman.setEnvironment('token', json.access_token);\r",
+											"if (responseCode.code >= 200 && responseCode.code < 300) {\r",
+											"    var json = JSON.parse(responseBody);\r",
+											"    postman.setEnvironmentVariable('token', json.access_token);\r",
 											"}"
 										],
 										"type": "text/javascript"
