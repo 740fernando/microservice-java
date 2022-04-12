@@ -30,6 +30,10 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+	private static final String IS_AUTHENTICATED = "isAuthenticated()";
+
+	private static final String PERMIT_ALL = "permitAll()";
+
 	private static final int SECONDS = 86400;
 
 	private static final String PASSWORD = "password";
@@ -58,7 +62,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+		security.tokenKeyAccess(PERMIT_ALL).checkTokenAccess(IS_AUTHENTICATED);
 	}
 	
 	@Override
