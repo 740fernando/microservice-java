@@ -10,9 +10,11 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
- * Classe de Configuracao responsavel por determinar o gateway zuul como servidor de recursos
+ * Classe de Configuracao responsavel por determinar o gateway zuul como
+ * servidor de recursos
  * 
- * EnableResourceServer - configurar por background que o microservice seja um resource service
+ * EnableResourceServer - configurar por background que o microservice seja um
+ * resource service
  * 
  * @author fsouviei
  *
@@ -26,14 +28,17 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	private static final String OPERATOR = "OPERATOR";
 
+	private static final String[] PATH_PUBLIC = { "/hr-oauth/oauth/token" };
+	
+	private static final String[] PATH_OPERATOR = { "/hr-worker/**" };
+	
+	private static final String[] PATH_ADMIN = { "/hr-payroll/**", "/hr-user/**", "/actuator/**",
+			"/hr-worker/actuator/**", "/hr-oauth/actuator/**" };
+	
 	@Autowired
-	private JwtTokenStore tokenStore; // Uma implementação de TokenStore que apenas lê dados dos próprios tokens. Não é realmente uma armazenamento, pois nunca persiste nada, e métodos como getAccessToken(OAuth2Authentication) sempre retornam null. Mas, no entanto, uma ferramenta útil, pois traduz tokens de acesso de e para autenticações. Use isso sempre que um TokenStore for necessário, mas lembre-se de usar a mesma instância JwtAccessTokenConverter (ou uma com o mesmo verificador) que foi usada quando os tokens foram cunhados.
-	
-	private static final String[] PATH_PUBLIC = {"/hr-oauth/oauth/token"};
-	
-	private static final String[] PATH_OPERATOR = {"/hr-worker/**"};
-	
-	private static final String[] PATH_ADMIN = {"/hr-payroll/**","/hr-user/**"};
+	private JwtTokenStore tokenStore; 
+
+
 	/**
 	 * Metodo responsavel por realizar a leitura do token
 	 */
@@ -47,11 +52,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	 */
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http
-		.authorizeRequests()// autoriza requisicoes
-		.antMatchers(PATH_PUBLIC).permitAll() // define as autorizacoes das rotas
-		.antMatchers(HttpMethod.GET,PATH_OPERATOR).hasAnyRole(OPERATOR,ADMIN) // define o acesso as rotas de OPERATOR para funcoes admin e operator, mas SOMENTE para o metodo GET
+		http.authorizeRequests()
+		.antMatchers(PATH_PUBLIC).permitAll()
+		.antMatchers(HttpMethod.GET, PATH_OPERATOR).hasAnyRole(OPERATOR, ADMIN)
 		.antMatchers(PATH_ADMIN).hasRole(ADMIN)
-		.anyRequest().authenticated(); // Qualquer outra rota que nao foi especificada acima, ira exigir autenticacao
+		.anyRequest().authenticated();
 	}
 }
