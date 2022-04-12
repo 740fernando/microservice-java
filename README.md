@@ -255,6 +255,9 @@ fetch("http://localhost:8765/hr-worker/workers", {
   "credentials": "omit"
 });
 ```
+# Fase 5 : Docker
+
+![image](https://user-images.githubusercontent.com/32016610/162949541-f53b4cb0-567b-4362-bf14-aeea0f3857e1.png)
 
 
 
