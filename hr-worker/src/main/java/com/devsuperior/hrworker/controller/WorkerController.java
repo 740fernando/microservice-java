@@ -24,6 +24,10 @@ import com.devsuperior.hrworker.service.WorkerService;
 @RequestMapping(value="/workers")
 public class WorkerController {
 	
+	private static final String CONFIG = "CONFIG = ";
+
+	private static final String LOCAL_SERVER_PORT = "local.server.port";
+
 	private static final String PORT = "PORT = ";
 
 	private static Logger logger = LoggerFactory.getLogger(WorkerController.class);
@@ -47,7 +51,7 @@ public class WorkerController {
 	
 	@GetMapping(value="/configs")
 	public ResponseEntity<Void>getConfigs(){
-		logger.info("CONFIG = "+testConfig);
+		logger.info(CONFIG.concat(testConfig));
 		return ResponseEntity.noContent().build();
 	}
 	
@@ -57,13 +61,7 @@ public class WorkerController {
 	}
 	@GetMapping("/{id}")
 	public ResponseEntity<WorkerResponseDTO> findById(@PathVariable Long id){
-		/* Teste de TIMOUT*/
-		try {
-			Thread.sleep(3000L);
-		}catch(InterruptedException e) {
-			e.printStackTrace();
-		}
-		logger.info(PORT.concat(env.getProperty("local.server.port")));
+		logger.info(PORT.concat(env.getProperty(LOCAL_SERVER_PORT)));
 		return ResponseEntity.ok(mapper.toWorkerResponseDTO(service.findById(id)));
 	}
 }
