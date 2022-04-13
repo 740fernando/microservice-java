@@ -11,7 +11,7 @@ docker pull postgres:12-alpine
 
 docker run -p 5432:5432 --name hr-worker-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_hr_worker postgres:12-alpine
 
-docker run -p 5432:5432 --name hr-user-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_hr_user postgres:12-alpine
+docker run -p 5433:5432 --name hr-user-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_hr_user postgres:12-alpine
 ```
 
 ## hr-config-server
@@ -27,7 +27,7 @@ mvnw clean package
 
 docker build -t hr-config-server:v1 .
 
-docker run -p 8888:8888 --name hr-config-server --network hr-net -e GITHUB_USER=acenelio -e GITHUB_PASS= hr-config-server:v1
+docker run -p 8888:8888 --name hr-config-server --network hr-net -e GITHUB_USER=740fernando -e GITHUB_PASS= hr-config-server:v1
 ```
 
 ## hr-eureka-server
